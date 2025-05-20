@@ -7,10 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="wwwroot\lib\bootstrap\dist\**" />
-    <Content Remove="wwwroot\lib\bootstrap\dist\**" />
-    <EmbeddedResource Remove="wwwroot\lib\bootstrap\dist\**" />
-    <None Remove="wwwroot\lib\bootstrap\dist\**" />
+    <Compile Remove="wwwroot\lib\bootstrap\**" />
+    <Content Remove="wwwroot\lib\bootstrap\**" />
+    <EmbeddedResource Remove="wwwroot\lib\bootstrap\**" />
+    <None Remove="wwwroot\lib\bootstrap\**" />
   </ItemGroup>
 
   <ItemGroup>
