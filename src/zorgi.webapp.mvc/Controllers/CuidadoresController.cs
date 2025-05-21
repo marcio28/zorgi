@@ -38,8 +38,7 @@ namespace zorgi.webapp.mvc.Controllers
             return View(cuidador);
         }
 
-        // GET: Cuidadores/Create
-        public IActionResult Create()
+        public IActionResult Novo()
         {
             return View();
         }
