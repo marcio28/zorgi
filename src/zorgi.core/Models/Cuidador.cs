@@ -7,7 +7,7 @@
         public decimal SalarioPorHora { get; private set; }
 
         // EF Relation
-        protected Cuidador() { }
+        public Cuidador() { }
 
         public Cuidador(Guid id, string nome, string email, decimal salarioPorHora)
         {
