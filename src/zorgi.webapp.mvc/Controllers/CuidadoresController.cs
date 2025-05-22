@@ -17,6 +17,7 @@ namespace zorgi.webapp.mvc.Controllers
         // GET: Cuidadores
         public async Task<IActionResult> Index()
         {
+            // TODO: Estudar verificação de presença de id na query, oriunda do link no response da inclusão do cuidador
             return View(await _context.Cuidadores.ToListAsync());
         }
 
