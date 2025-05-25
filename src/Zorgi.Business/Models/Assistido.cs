@@ -9,8 +9,7 @@
         // EF Relation
         public Cuidador CuidadorPrincipal { get; protected set; }
 
-        // EF Relation
-        protected Assistido() { }
+        public Assistido() { }
 
         public Assistido(Guid id, DateTime dataDeNascimento, Guid cuidadorPrincipalId)
         {
