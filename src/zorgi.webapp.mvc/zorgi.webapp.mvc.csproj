@@ -23,7 +23,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\zorgi.core\zorgi.core.csproj" />
+    <ProjectReference Include="..\Zorgi.Business\Zorgi.Business.csproj" />
+    <ProjectReference Include="..\Zorgi.Data\Zorgi.Data.csproj" />
   </ItemGroup>
 
 </Project>

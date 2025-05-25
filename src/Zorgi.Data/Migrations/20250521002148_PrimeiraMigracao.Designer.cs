@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using zorgi.core.Data;
+using Zorgi.Data.Context;
 
 #nullable disable
 
-namespace zorgi.core.Migrations
+namespace Zorgi.Business.Migrations
 {
     [DbContext(typeof(AppDbContext))]
     [Migration("20250521002148_PrimeiraMigracao")]

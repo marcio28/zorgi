@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using zorgi.core.Models;
+using Zorgi.Business.Models;
 
-namespace zorgi.core.Configurations
+namespace Zorgi.Data.Mappings
 {
-    public class AssistidoConfiguration : IEntityTypeConfiguration<Assistido>
+    public class AssistidoMapping : IEntityTypeConfiguration<Assistido>
     {
         public void Configure(EntityTypeBuilder<Assistido> builder)
         {

@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using zorgi.core.Models;
+using Zorgi.Business.Models;
 
-namespace zorgi.core.Configurations
+namespace Zorgi.Data.Mappings
 {
-    public class CuidadorConfiguration : IEntityTypeConfiguration<Cuidador>
+    public class CuidadorMapping : IEntityTypeConfiguration<Cuidador>
     {
         public void Configure(EntityTypeBuilder<Cuidador> builder)
         {

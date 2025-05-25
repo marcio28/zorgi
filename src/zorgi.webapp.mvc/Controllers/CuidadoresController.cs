@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using zorgi.core.Data;
-using zorgi.core.Models;
+using Zorgi.Business.Models;
+using Zorgi.Data.Context;
 
-namespace zorgi.webapp.mvc.Controllers
+namespace Zorgi.WebApp.Mvc.Controllers
 {
     public class CuidadoresController : Controller
     {

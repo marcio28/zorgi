@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using zorgi.core.Data;
+using Zorgi.Data.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 

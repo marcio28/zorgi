@@ -1,4 +1,4 @@
-﻿namespace zorgi.core.Models
+﻿namespace Zorgi.Business.Models
 {
     public abstract class Entity
     {

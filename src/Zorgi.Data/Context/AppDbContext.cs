@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using zorgi.core.Configurations;
-using zorgi.core.Models;
+using Zorgi.Business.Models;
+using Zorgi.Data.Mappings;
 
-namespace zorgi.core.Data
+namespace Zorgi.Data.Context
 {
     public class AppDbContext : IdentityDbContext
     {
@@ -17,8 +17,8 @@ namespace zorgi.core.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.ApplyConfiguration(new AssistidoConfiguration());
-            modelBuilder.ApplyConfiguration(new CuidadorConfiguration());
+            modelBuilder.ApplyConfiguration(new AssistidoMapping());
+            modelBuilder.ApplyConfiguration(new CuidadorMapping());
         }
     }
 }
