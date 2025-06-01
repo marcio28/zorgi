@@ -1,0 +1,6 @@
+@Zorgi.Api_HostAddress = http://localhost:5052
+
+GET {{Zorgi.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
