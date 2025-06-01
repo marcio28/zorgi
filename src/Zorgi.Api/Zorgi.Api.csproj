@@ -6,7 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Zorgi.Business\Zorgi.Business.csproj" />
+    <ProjectReference Include="..\Zorgi.Data\Zorgi.Data.csproj" />
   </ItemGroup>
 
 </Project>
