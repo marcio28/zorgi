@@ -5,8 +5,8 @@ using Zorgi.Business.Repositories;
 
 namespace Zorgi.Business.Services
 {
-    public class CuidadorService(   ICuidadorRepository cuidadorRepository,
-                                    INotifier notifier) : BaseService(notifier), ICuidadorService
+    public class CuidadorService(ICuidadorRepository cuidadorRepository,
+                                 INotifier notifier) : BaseService(notifier), ICuidadorService
     {
         private readonly ICuidadorRepository _cuidadorRepository = cuidadorRepository;
 
