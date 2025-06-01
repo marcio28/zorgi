@@ -9,10 +9,20 @@ namespace Zorgi.Data.Mappings
         public void Configure(EntityTypeBuilder<Assistido> builder)
         {
             builder.ToTable("Assistidos");
+
             builder.HasKey(a => a.Id);
-            builder.Property(a => a.Nome).IsRequired().HasMaxLength(100);
-            builder.Property(a => a.DataDeNascimento).IsRequired();
-            builder.HasOne(a => a.CuidadorPrincipal).WithMany().HasForeignKey(a => a.CuidadorPrincipalId).OnDelete(DeleteBehavior.Restrict);
+
+            builder.Property(a => a.Nome)
+                   .IsRequired()
+                   .HasMaxLength(100);
+
+            builder.Property(a => a.DataDeNascimento)
+                   .IsRequired();
+
+            builder.HasOne(a => a.CuidadorPrincipal)
+                   .WithMany()
+                   .HasForeignKey(a => a.CuidadorPrincipalId)
+                   .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }
