@@ -1,0 +1,24 @@
+﻿using Zorgi.Business.Repositories;
+using Zorgi.Business.Services;
+using Zorgi.Data.Context;
+using Zorgi.Data.Repositories;
+
+namespace Zorgi.Api.Configuration
+{
+    public static class DependencyInjectionConfig
+    {
+        public static IServiceCollection ResolveDependencies(this IServiceCollection services)
+        {
+            // Contexts
+            services.AddScoped<AppDbContext>();
+
+            // Repositories
+            services.AddScoped<ICuidadorRepository, CuidadorRepository>();
+
+            // Services
+            services.AddScoped<ICuidadorService, CuidadorService>();
+
+            return services;
+        }
+    }
+}
