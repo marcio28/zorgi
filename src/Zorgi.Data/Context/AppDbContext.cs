@@ -11,6 +11,9 @@ namespace Zorgi.Data.Context
 
         public DbSet<Cuidador> Cuidadores { get; set; }
 
+        public DbSet<ReceitaMedica> ReceitaMedicas { get; set; }
+
+
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -19,6 +22,7 @@ namespace Zorgi.Data.Context
 
             modelBuilder.ApplyConfiguration(new AssistidoMapping());
             modelBuilder.ApplyConfiguration(new CuidadorMapping());
+            modelBuilder.ApplyConfiguration(new ReceitaMedicaMapping());
         }
     }
 }

@@ -8,17 +8,32 @@ using Zorgi.Data.Context;
 
 #nullable disable
 
-namespace Zorgi.Business.Migrations
+namespace Zorgi.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250521002148_PrimeiraMigracao")]
-    partial class PrimeiraMigracao
+    [Migration("20250608230834_Join Cuidadores__Assistidos")]
+    partial class JoinCuidadores__Assistidos
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.5");
+
+            modelBuilder.Entity("Cuidadores__Assistidos", b =>
+                {
+                    b.Property<Guid>("CuidadorId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("AssistidoId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("CuidadorId", "AssistidoId");
+
+                    b.HasIndex("AssistidoId");
+
+                    b.ToTable("Cuidadores__Assistidos");
+                });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
@@ -212,7 +227,7 @@ namespace Zorgi.Business.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("zorgi.core.Models.Assistido", b =>
+            modelBuilder.Entity("Zorgi.Business.Models.Assistido", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -236,10 +251,13 @@ namespace Zorgi.Business.Migrations
                     b.ToTable("Assistidos", (string)null);
                 });
 
-            modelBuilder.Entity("zorgi.core.Models.Cuidador", b =>
+            modelBuilder.Entity("Zorgi.Business.Models.Cuidador", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Documento")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Email")
@@ -258,6 +276,46 @@ namespace Zorgi.Business.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Cuidadores", (string)null);
+                });
+
+            modelBuilder.Entity("Zorgi.Business.Models.ReceitaMedica", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("AssistidoId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("Ativa")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateOnly>("DataDePrescricao")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Imagem")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AssistidoId");
+
+                    b.ToTable("ReceitasMedicas", (string)null);
+                });
+
+            modelBuilder.Entity("Cuidadores__Assistidos", b =>
+                {
+                    b.HasOne("Zorgi.Business.Models.Assistido", null)
+                        .WithMany()
+                        .HasForeignKey("AssistidoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Zorgi.Business.Models.Cuidador", null)
+                        .WithMany()
+                        .HasForeignKey("CuidadorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -311,15 +369,26 @@ namespace Zorgi.Business.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("zorgi.core.Models.Assistido", b =>
+            modelBuilder.Entity("Zorgi.Business.Models.Assistido", b =>
                 {
-                    b.HasOne("zorgi.core.Models.Cuidador", "CuidadorPrincipal")
+                    b.HasOne("Zorgi.Business.Models.Cuidador", "CuidadorPrincipal")
                         .WithMany()
                         .HasForeignKey("CuidadorPrincipalId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("CuidadorPrincipal");
+                });
+
+            modelBuilder.Entity("Zorgi.Business.Models.ReceitaMedica", b =>
+                {
+                    b.HasOne("Zorgi.Business.Models.Assistido", "Assistido")
+                        .WithMany()
+                        .HasForeignKey("AssistidoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Assistido");
                 });
 #pragma warning restore 612, 618
         }

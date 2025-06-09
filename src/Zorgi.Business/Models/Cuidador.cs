@@ -6,7 +6,7 @@
         public string Documento { get; private set; }
         public string Email { get; private set; }
         public decimal SalarioPorHora { get; private set; }
-        public IEnumerable<Assistido> Assistidos { get; private set; }
+        public IEnumerable<Assistido> Assistidos { get; } = [];
 
         public Cuidador() { }
         public Cuidador(Guid id, string documento, string nome, string email, decimal salarioPorHora)

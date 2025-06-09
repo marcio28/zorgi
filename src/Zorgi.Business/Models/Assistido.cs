@@ -1,4 +1,4 @@
-﻿namespace Zorgi.Business.Models
+﻿ namespace Zorgi.Business.Models
 {
     public class Assistido : Entity, IAggregateRoot
     {
@@ -8,6 +8,8 @@
 
         // EF Relation
         public Cuidador CuidadorPrincipal { get; protected set; }
+
+        public IEnumerable<Cuidador> Cuidadores { get; } = [];
 
         public Assistido() { }
 

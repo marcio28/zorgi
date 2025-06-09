@@ -1,11 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Zorgi.Business.Migrations
+namespace Zorgi.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class PrimeiraMigracao : Migration
+    public partial class Inicial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -55,6 +56,7 @@ namespace Zorgi.Business.Migrations
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
                     Nome = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false),
+                    Documento = table.Column<string>(type: "TEXT", nullable: true),
                     Email = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false),
                     SalarioPorHora = table.Column<decimal>(type: "decimal(9,2)", nullable: false)
                 },
@@ -176,17 +178,44 @@ namespace Zorgi.Business.Migrations
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
                     Nome = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false),
                     DataDeNascimento = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    CuidadorPrincipalId = table.Column<Guid>(type: "TEXT", nullable: false)
+                    CuidadorPrincipalId = table.Column<Guid>(type: "TEXT", nullable: false),
+                    CuidadorId = table.Column<Guid>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Assistidos", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Assistidos_Cuidadores_CuidadorId",
+                        column: x => x.CuidadorId,
+                        principalTable: "Cuidadores",
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Assistidos_Cuidadores_CuidadorPrincipalId",
                         column: x => x.CuidadorPrincipalId,
                         principalTable: "Cuidadores",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ReceitasMedicas",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    AssistidoId = table.Column<Guid>(type: "TEXT", nullable: false),
+                    DataDePrescricao = table.Column<DateOnly>(type: "TEXT", nullable: false),
+                    Ativa = table.Column<bool>(type: "INTEGER", nullable: false),
+                    Imagem = table.Column<string>(type: "TEXT", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ReceitasMedicas", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ReceitasMedicas_Assistidos_AssistidoId",
+                        column: x => x.AssistidoId,
+                        principalTable: "Assistidos",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -227,9 +256,19 @@ namespace Zorgi.Business.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_Assistidos_CuidadorId",
+                table: "Assistidos",
+                column: "CuidadorId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Assistidos_CuidadorPrincipalId",
                 table: "Assistidos",
                 column: "CuidadorPrincipalId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ReceitasMedicas_AssistidoId",
+                table: "ReceitasMedicas",
+                column: "AssistidoId");
         }
 
         /// <inheritdoc />
@@ -251,13 +290,16 @@ namespace Zorgi.Business.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Assistidos");
+                name: "ReceitasMedicas");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Assistidos");
 
             migrationBuilder.DropTable(
                 name: "Cuidadores");

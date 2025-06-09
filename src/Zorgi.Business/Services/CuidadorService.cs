@@ -26,7 +26,16 @@ namespace Zorgi.Business.Services
 
         public async Task<bool> Atualizar(Cuidador cuidador)
         {
-            throw new NotImplementedException();
+            if (!ExecutarValidacao(new CuidadorValidation(), cuidador)) return false;
+
+            if (_cuidadorRepository.Buscar(c => c.Documento == cuidador.Documento && c.Id != cuidador.Id).Result.Any())
+            {
+                Notificar("Já existe um cuidador com o documento infomado.");
+                return false;
+            }
+
+            await _cuidadorRepository.Atualizar(cuidador);
+            return true;
         }
 
         public void Dispose()
@@ -36,7 +45,14 @@ namespace Zorgi.Business.Services
 
         public async Task<bool> Remover(Guid id)
         {
-            throw new NotImplementedException();
+            if (_cuidadorRepository.ObterCuidadorAssistidos(id).Result.Assistidos.Any())
+            {
+                Notificar("Este cuidador não pode ser excluído, porque cuida de assistidos.");
+                return false;
+            }
+
+            await _cuidadorRepository.Remover(id);
+            return true;
         }
     }
 }

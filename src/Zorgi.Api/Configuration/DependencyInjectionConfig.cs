@@ -1,4 +1,5 @@
-﻿using Zorgi.Business.Repositories;
+﻿using Zorgi.Business.Notifications;
+using Zorgi.Business.Repositories;
 using Zorgi.Business.Services;
 using Zorgi.Data.Context;
 using Zorgi.Data.Repositories;
@@ -16,6 +17,7 @@ namespace Zorgi.Api.Configuration
             services.AddScoped<ICuidadorRepository, CuidadorRepository>();
 
             // Services
+            services.AddScoped<INotifier, Notifier>();
             services.AddScoped<ICuidadorService, CuidadorService>();
 
             return services;

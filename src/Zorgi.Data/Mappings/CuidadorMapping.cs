@@ -22,6 +22,14 @@ namespace Zorgi.Data.Mappings
             builder.Property(c => c.SalarioPorHora)
                    .IsRequired()
                    .HasColumnType("decimal(9,2)");
+
+            builder.HasMany(c => c.Assistidos)
+                   .WithMany(a => a.Cuidadores)
+                   .UsingEntity(
+                        "Cuidadores__Assistidos",
+                        r => r.HasOne(typeof(Assistido)).WithMany().HasForeignKey("AssistidoId").HasPrincipalKey(nameof(Assistido.Id)),
+                        l => l.HasOne(typeof(Cuidador)).WithMany().HasForeignKey("CuidadorId").HasPrincipalKey(nameof(Cuidador.Id)),
+                        j => j.HasKey("CuidadorId", "AssistidoId"));
         }
     }
 }
