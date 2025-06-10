@@ -4,8 +4,8 @@ namespace Zorgi.Business.Services
 {
     public interface IAssistidoService : IDisposable
     {
-        Task Adicionar(Assistido assistido);
-        Task Atualizar(Assistido assistido);
-        Task Remover(Guid id);
+        Task<bool> Adicionar(Assistido assistido);
+        Task<bool> Atualizar(Assistido assistido);
+        Task<bool> Remover(Guid id);
     }
 }

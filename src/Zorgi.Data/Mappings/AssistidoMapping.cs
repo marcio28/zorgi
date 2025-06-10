@@ -14,7 +14,11 @@ namespace Zorgi.Data.Mappings
 
             builder.Property(a => a.Nome)
                    .IsRequired()
-                   .HasMaxLength(100);
+                   .HasColumnType("varchar(100)");
+
+            builder.Property(a => a.Documento)
+                   .IsRequired()
+                   .HasColumnType("char(11)");
 
             builder.Property(a => a.DataDeNascimento)
                    .IsRequired();

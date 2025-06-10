@@ -13,11 +13,16 @@ namespace Zorgi.Data.Mappings
             builder.HasKey(c => c.Id);
 
             builder.Property(c => c.Nome)
-                   .IsRequired().HasMaxLength(100);
+                   .IsRequired()
+                   .HasColumnType("varchar(100)");
+
+            builder.Property(c => c.Documento)
+                   .IsRequired()
+                   .HasColumnType("char(11)");
 
             builder.Property(c => c.Email)
                    .IsRequired()
-                   .HasMaxLength(100);
+                   .HasColumnType("varchar(100)");
 
             builder.Property(c => c.SalarioPorHora)
                    .IsRequired()

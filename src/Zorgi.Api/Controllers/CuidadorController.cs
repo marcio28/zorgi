@@ -8,7 +8,6 @@ using Zorgi.Business.Services;
 
 namespace Zorgi.Api.Controllers
 {
-    [ApiController]
     [Route("api/cuidadores")]
     public class CuidadorController(ICuidadorRepository cuidadorRepository,
                                     ICuidadorService cuidadorService,
