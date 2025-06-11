@@ -22,6 +22,10 @@ namespace Zorgi.Api.ViewModels
 
         public decimal SalarioPorHora { get; set; }
 
+        public string FotoUpload { get; set; }
+
+        public string Foto { get; set; }
+
         public IEnumerable<AssistidoViewModel> Assistidos { get; set; }
     }
 }

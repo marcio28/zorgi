@@ -13,7 +13,7 @@
         // EF Relation
         public Cuidador CuidadorPrincipal { get; set; }
 
-        public IEnumerable<Cuidador> Cuidadores { get; } = [];
+        public IEnumerable<Cuidador> Cuidadores { get; set; } = [];
 
         public Assistido() { }
     }

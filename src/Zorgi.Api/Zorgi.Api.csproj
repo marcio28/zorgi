@@ -16,4 +16,8 @@
     <ProjectReference Include="..\Zorgi.Data\Zorgi.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\" />
+  </ItemGroup>
+
 </Project>

@@ -15,10 +15,12 @@ namespace Zorgi.Api.Configuration
 
             // Repositories
             services.AddScoped<ICuidadorRepository, CuidadorRepository>();
+            services.AddScoped<IAssistidoRepository, AssistidoRepository>();
 
             // Services
             services.AddScoped<INotifier, Notifier>();
             services.AddScoped<ICuidadorService, CuidadorService>();
+            services.AddScoped<IAssistidoService, AssistidoService>();
 
             return services;
         }

@@ -9,7 +9,12 @@ namespace Zorgi.Api.Configuration
         public AutoMapperConfig()
         {
             CreateMap<Cuidador, CuidadorViewModel>().ReverseMap();
-            CreateMap<Assistido, AssistidoViewModel>().ReverseMap();
+
+            CreateMap<Assistido, AssistidoViewModel>()
+                .ForMember(dest => dest.NomeDoCuidadorPrincipal, opt => opt.MapFrom(src => src.CuidadorPrincipal.Nome));
+
+            CreateMap<AssistidoViewModel, Assistido>();
+
             CreateMap<ReceitaMedica, ReceitaMedicaViewModel>().ReverseMap();
         }
     }
